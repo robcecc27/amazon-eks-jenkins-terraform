@@ -1,5 +1,5 @@
 variable "region" {
-  default = "us-east-1"
+  default = "default"
 }
 variable "environment" {
   default = "Development"
@@ -32,5 +32,5 @@ variable "instance_ami" {
 
 }
 variable "keyname" {
-  
+
 }
