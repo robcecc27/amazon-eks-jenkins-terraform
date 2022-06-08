@@ -28,7 +28,7 @@ pipeline {
             steps {
                 echo '=== Building Petclinic Docker Image ==='
                 script {
-                    app = docker.build("robcecc/petclinic-spinnaker-jenkins")
+                    app = docker.build("ibuchh/petclinic-spinnaker-jenkins")
                 }
             }
         }
@@ -41,7 +41,7 @@ pipeline {
                 script {
                     GIT_COMMIT_HASH = sh (script: "git log -n 1 --pretty=format:'%H'", returnStdout: true)
                     SHORT_COMMIT = "${GIT_COMMIT_HASH[0..7]}"
-                    docker.withRegistry('https://registry.hub.docker.com', 'dockerHubCredentials') {
+                    docker.withRegistry('https://hub.docker.com/repository/docker/robcecc/petclinic-spinnaker-jenkins', 'dockerHubCredentials') {
                         app.push("$SHORT_COMMIT")
                         app.push("latest")
                     }
